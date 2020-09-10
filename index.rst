@@ -1,4 +1,4 @@
-.. code-block:: C++
+.. code-block:: python
     %Q-1
     c = physconst('lightspeed');
     d=10e3 %distance in Km
