@@ -1,5 +1,4 @@
-.. code-block:: c++
-
+.. code-block:: MATLAB
     %Q-1
     c = physconst('lightspeed');
     d=10e3 %distance in Km
@@ -57,17 +56,14 @@
     %Q-3
     %Path Loss for 10km Distance
     figure(5)
-    total_loss=pathloss+rainloss+fogloss+gasloss;
-    semilogy(freq/1e9,total_loss); %plot total path loss with frequency
+    semilogy(freq/1e9,pathloss+rainloss+fogloss+gasloss); %plot total path loss with frequency
     grid on; 
     xlabel('Propagation Frequance (GHz)'); 
     ylabel('Path Loss (dB)');
     title('Path Loss for 10km Distance'); 
 
     %Q-4
-    minimum_loss=min(total_loss);
-    x=find(total_loss==minimum_loss);
-    fc = freq(x);      % suitable frequency with minimum loss
+    fc = 50e9;
     R = (0:10000).';
     apathloss = fspl(R,c/fc);
     rr = 20;
@@ -76,20 +72,12 @@
     arainloss = rainpl(R,fc,rr,el,tau);
     M = 0.5;  
     afogloss = fogpl(R,fc,T,M);
-    agasloss = gaspl(R,fc,T,P,ROU);
-    Txpower= 10*log10(1000*50e3);   %50kw in dbm
-    Txgain= 10*log10(1e3);     %1000 gain in dbi
-    TxCableloss= 3;    %in db
-    TXP=Txpower+Txgain-TxCableloss; %power release by transmitter antenna
-    power_loss= TXP-(apathloss+arainloss+afogloss+agasloss);
+    agasloss = gaspl(R,fc,T,P,ROU); 
+    P=103.98  %power release by transmitter antenna
     figure(6)
-    plot(R/1000,power_loss);
-    y=find(R/1000==10);
-    FPL=power_loss(y);
-    FPL             %Total path loss for 10km distance in db
+    plot(R/1000,P-(apathloss+arainloss+afogloss+agasloss));
     grid on; 
     xlabel('Propagation Distance (km)'); 
     ylabel('Power(dB)');
     title('Power variation for 50 GHz Signal'); 
-
 
