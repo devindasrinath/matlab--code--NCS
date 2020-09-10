@@ -1,4 +1,4 @@
-.. code-block:: c
+.. code-block:: c++
 
     %Q-1
     c = physconst('lightspeed');
