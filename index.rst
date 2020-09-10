@@ -1,4 +1,5 @@
  .. code-block:: c
+ 
 	%Q-1
 	c = physconst('lightspeed');
 	d=10e3 %distance in Km
