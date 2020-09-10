@@ -1,10 +1,10 @@
  .. code-block:: c
  
-     Q-1
-     c = physconst('lightspeed');
-     d=10e3 %distance in Km
-     freq = (50:1000).'*1e9; %frequency range GHz
-     pathloss = fspl(d,c./freq);
+    Q-1
+    c = physconst('lightspeed');
+    d=10e3 %distance in Km
+    freq = (50:1000).'*1e9; %frequency range GHz
+    pathloss = fspl(d,c./freq);
 
 figure(1); %plot
 loglog(freq/1e9,pathloss);
